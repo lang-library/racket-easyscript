@@ -132,24 +132,10 @@
 
 (pp $up1)
 
-;;(eval $up1)
+(eval $up1 ns)
 
-(define (my-conv $x)
-  (cond
-    ( (null? $x) '() )
-    ( (cons? $x) (cons (my-conv (car $x)) (my-conv (cdr $x))) )
-    ( (symbol? $x) (string->symbol (symbol->string $x)) )
-    ( #t $x )
-    )
-  )
-
-(define $mc (my-conv $up1))
-(pp $mc)
-
-(eval $mc ns)
-
+(eval-script (eval $up1 ns))
 (eval-script "print(40 + 2)")
-;;(eval-script "console.log(40 + 2)")
 
 (require pprint)
 (pretty-print
