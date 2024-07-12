@@ -107,7 +107,6 @@
         [(print ,[%cv]) `(:js-console.log ,%cv)]
         )
   (ConstantOrVariable : ConstantOrVariable (ir) -> ConstantOrVariable ()
-;;                      [,%sym `(:variable ,(symbol->string %s))]
                       [,%c `(:constant ,%c)]
                       )
   (Variable : Variable (ir) -> Variable ()
@@ -133,6 +132,8 @@
 (pp $up1)
 
 (define $js (eval $up1 ns))
+
+(displayln $js)
 
 (eval-script $js)
 
