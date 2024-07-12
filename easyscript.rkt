@@ -3,13 +3,22 @@
 ;;(require compatibility/defmacro)
 (require javascript)
 (require "./pp.rkt")
+(require "./js.rkt")
 
 (provide L0
          parse-L0
          L1
+         pass1
          language->s-expression)
 
+(define-namespace-anchor a)
+(define ns (namespace-anchor->namespace a))
+
 ;;(define-macro (:js-variable a) (symbol->string a))
+
+;;(define $sym 'x)
+;;(define $sym2 (string->symbol (symbol->string $sym)))
+;;(eq? $sym $sym2)
 
 (define-language L0
   (terminals
@@ -119,7 +128,25 @@
 (define $p1 (pass1 $p0))
 (pp $p1)
 
-(pp (unparse-L1 $p1))
+(define $up1 (unparse-L1 $p1))
+
+(pp $up1)
+
+;;(eval $up1)
+
+(define (my-conv $x)
+  (cond
+    ( (null? $x) '() )
+    ( (cons? $x) (cons (my-conv (car $x)) (my-conv (cdr $x))) )
+    ( (symbol? $x) (string->symbol (symbol->string $x)) )
+    ( #t $x )
+    )
+  )
+
+(define $mc (my-conv $up1))
+(pp $mc)
+
+(eval $mc ns)
 
 (eval-script "print(40 + 2)")
 ;;(eval-script "console.log(40 + 2)")
