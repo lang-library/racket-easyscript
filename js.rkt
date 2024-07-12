@@ -11,7 +11,7 @@
       (set! $result
             (string-append-immutable $result (eval $x) ";"))
       )
-    $result
+    (format "{~a}" $result)
     )
   )
 

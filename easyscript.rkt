@@ -132,16 +132,27 @@
 
 (pp $up1)
 
-(eval $up1 ns)
+(define $js (eval $up1 ns))
 
-(eval-script (eval $up1 ns))
+(eval-script $js)
+
+
+
+
 (eval-script "print(40 + 2)")
 
 (require pprint)
+#;(pretty-print
+ (format-term
+  (parse-source-element
+   "while (true) { print('break!'); break }"))
+ )
+#;(displayln "")
 (pretty-print
  (format-term
   (parse-source-element
-   "while (true) { print('break!'); break }")))
+   $js))
+ )
 (displayln "")
 (set! $input '(vector 111 x))
 (set! $p0 (parse-L0 $input))
