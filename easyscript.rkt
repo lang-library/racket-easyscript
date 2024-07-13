@@ -1,3 +1,4 @@
+#! /usr/bin/env racket
 #lang nanopass
 
 ;;(require compatibility/defmacro)
@@ -19,7 +20,7 @@
    (number (%num))
    (string (%str))
    (symbol (%sym))
-   (primitive (%pr))
+   ;;(primitive (%pr))
    )
   (Expr (%e %body)
         %c
@@ -44,17 +45,6 @@
    %sym
    )
   )
-
-;; (define primitive?
-;;   (lambda (x)
-;;     (memq x '(+ - * / cons car cdr pair? vector make-vector vector-length
-;;               vector-ref vector-set! vector? string make-string
-;;               string-length string-ref string-set! string? void))))
-
-;; (define constant?
-;;   (lambda (x)
-;;     (or (number? x)
-;;         (string? x))))
 
 (define-parser parse-L0 L0)
 
