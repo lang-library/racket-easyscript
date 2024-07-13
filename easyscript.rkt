@@ -150,3 +150,8 @@
 (dump $p0)
 (set! $p1 (pass1 $p0))
 (dump $p1)
+
+(define $hw "hello \nworld\"")
+(dump $hw)
+(pp $hw)
+
