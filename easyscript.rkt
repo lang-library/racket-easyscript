@@ -108,36 +108,36 @@
                       )
   )
 
-(pp (language->s-expression L0))
+(dump (language->s-expression L0))
 
-(pp (language->s-expression L1))
+(dump (language->s-expression L1))
 
 (define $input '(begin (print 123) (define x 777) (print x)))
-(pp $input)
+(dump $input)
 
 (define $p0 (parse-L0 $input))
-(pp $p0)
+(dump $p0)
 
 (define $p1 (pass1 $p0))
-(pp $p1)
+(dump $p1)
 
 (define $up1 (unparse-L1 $p1))
 
-(pp $up1)
+(dump $up1)
 
 (define $js (eval $up1 ns))
 
 (displayln $js)
 
 (define $eval (eval-script $js))
-(pp $eval)
+(dump $eval)
 
 
 
 
 (eval-script "print(40 + 2)")
 
-(pp
+(dump
  (format-term
   (parse-source-element
    $js))
@@ -145,6 +145,6 @@
 (displayln "")
 (set! $input '(vector 111 x))
 (set! $p0 (parse-L0 $input))
-(pp $p0)
+(dump $p0)
 (set! $p1 (pass1 $p0))
-(pp $p1)
+(dump $p1)
