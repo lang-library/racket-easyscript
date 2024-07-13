@@ -3,6 +3,7 @@
 ;;(require compatibility/defmacro)
 (require javascript)
 (require "./pp.rkt")
+(require "./ppdoc.rkt")
 (require "./js.rkt")
 
 (provide L0
@@ -13,12 +14,6 @@
 
 (define-namespace-anchor a)
 (define ns (namespace-anchor->namespace a))
-
-;;(define-macro (:js-variable a) (symbol->string a))
-
-;;(define $sym 'x)
-;;(define $sym2 (string->symbol (symbol->string $sym)))
-;;(eq? $sym $sym2)
 
 (define-language L0
   (terminals
@@ -135,21 +130,15 @@
 
 (displayln $js)
 
-(eval-script $js)
+(define $eval (eval-script $js))
+(pp $eval)
 
 
 
 
 (eval-script "print(40 + 2)")
 
-(require pprint)
-#;(pretty-print
- (format-term
-  (parse-source-element
-   "while (true) { print('break!'); break }"))
- )
-#;(displayln "")
-(pretty-print
+(ppdoc
  (format-term
   (parse-source-element
    $js))
