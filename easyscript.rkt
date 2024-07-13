@@ -1,9 +1,8 @@
 #lang nanopass
 
 ;;(require compatibility/defmacro)
+(require pprint-all)
 (require javascript)
-(require "./pp.rkt")
-(require "./ppdoc.rkt")
 (require "./js.rkt")
 
 (provide L0
@@ -138,7 +137,7 @@
 
 (eval-script "print(40 + 2)")
 
-(ppdoc
+(pp
  (format-term
   (parse-source-element
    $js))
